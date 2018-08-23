@@ -1,0 +1,46 @@
+.bg-gunmetal {
+    background-color: #1f363d;
+}
+
+.bg-teal {
+    background-color: #33484e;
+}
+
+.bg-green {
+    background-color: #77cc74;
+}
+
+.bg-blue {
+    background-color: #5398be;
+}
+
+.navbar {
+    border-color: #33484e !important;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.border-bottom {
+    color: #33484e;
+}
+
+#field {
+    background-color: #fff;
+}
+
+#field a.btn {
+    width: 40px;
+    height: 40px;
+}
+
+#top-10 td {
+    border-color: #33484e;
+}
+
+#top-10 th {
+    border-color: #33484e;
+}
+
+.btn.disabled, .btn:disabled {
+	opacity: 1;
+}

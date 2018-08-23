@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Fox Hunting is a logical game">
+        <meta name="author" content="Alexander Tukhanin">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"> -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body class="bg-gunmetal text-secondary">
+        <!-- navbar -->
+        {% block navbar %}
+
+        <nav class="navbar navbar-expand-sm border-bottom navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+              <img src="{{ url_for('static', filename='img/fox_logo_60.png') }}" width="60" height="60" class="d-inline-block align-top" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown active">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Size <span class="sr-only">(current)</span>
+                  </a>
+                  <div id="fields-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#top-10">Top hunters</a>
+                </li>
+
+            </ul>
+            <div>
+                <span class="d-inline-block align-top" data-toggle="popover" data-content="<p class=&quot;text-justify&quot;>
+                    Fox Hunting is a logical game. The goal of the game is to find all foxes located on the field.<br>
+                    To start the game, click on any square of the field (make a &quot;shot&quot;) to open it. If the square is occupied by a fox - it is a &quot;hit&quot;. Otherwise, the square contains the number of foxes that are on the lines (horizontal, vertical and diagonals) that cross this square.
+                    </p>
+                    <div class=&quot;text-center&quot;>
+                        <img src=&quot;{{ url_for('static', filename='img/help_example.png') }}&quot;>
+                    </div>
+                    <p class=&quot;text-justify&quot;>
+                        <br>
+                        Find all the foxes in as few moves as possible.<br><br>
+                        For the first time the idea of the game was published in an article by A. Neschetnyi in “Nauka I Zhisn” (Science and Life) magazine in 1985.
+                    </p>
+                    ">
+                    <img src="{{ url_for('static', filename='img/help.png') }}" width="30" height="30" alt="">
+                </span>
+            </div>
+          </div>
+        </div>
+        </nav>
+
+        {% endblock %}
+        <!-- end navbar -->
+
+        <div class="container">
+            {% block page_content %}
+            <div class="row">
+                <div class="col bg-gunmetal">
+                    <div class="container">
+                        <div class="row justify-content-center pt-4">
+                            <div class="col-auto pt-1 pb-3 bg-teal">
+
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-inline bg-teal">
+                                        <h5>
+                                            <img src="{{ url_for('static', filename='img/fox_head_24.png') }}" width="24" height="24" alt="">
+                                            <span class="badge badge-light" id="fox_count">0</span>
+                                        </h5>
+                                    </div>
+                                    <div class="d-inline bg-teal">
+                                        <h5><span class="badge badge-light" id="timer">0</span></h5>
+                                    </div>
+                                    <div class="d-inline bg-teal">
+                                        <h5>
+                                            <img src="{{ url_for('static', filename='img/shot_24.png') }}" width="24" height="24" alt="">
+                                            <span class="badge badge-light" id="shot_count">0</span>
+                                        </h5>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <table id="field">
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row justify-content-center pt-3">
+                            <div class="col-auto bg-gunmetal">
+                                <div id="message" class="d-flex justify-content-center text-center mt-3 mb-3">
+                                </div>
+                                <div class="d-flex justify-content-center text-center mt-3 mb-3">
+                                    <button id="play_again" type="button" class="btn btn-primary">Play again</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row bg-gunmetal justify-content-center">
+                <div class="col col-md-6 mt-4">
+                    <div id="top-10_title" class="d-flex justify-content-center">TOP 10 (Small)</div>
+                    <table id="top-10" class="table table-sm table-hover">
+                        <thead class="thead">
+                            <tr><th>N</th> <th>Player</th> <th class="text-center">Shots</th> <th class="text-right">Time</th></tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <!-- <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+        <!-- <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script> -->
+        <script src="{{ url_for('static', filename='js/foxes.js') }}"></script>
+    </body>
+</html>
